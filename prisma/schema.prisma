@@ -12,3 +12,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users{
+  id Int @id @default(autoincrement())
+  name  String
+  years Int
+  email String  @unique
+  password String 
+  github String?
+
+    @@map("users")
+}
+
+model Products{
+  id Int @id @default(autoincrement())
+  description  String
+  price Int
+  stock String
+  product_type String 
+  created_at DateTime @default(now())
+  available Boolean
+
+  @@map("products")
+}
+
+model Shops{
+  cnpj Int @id
+  name  String
+  shop_type String @default("alimentação")
+  address String
+  phone Int 
+  branches Int
+  created_at DateTime @default(now())
+
+  @@map("shops")
+}
+
+model Suppliers{
+  id Int @id @default(autoincrement())
+  name  String
+  email String  @unique
+  rating Int
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  @@map("suppliers")
+}

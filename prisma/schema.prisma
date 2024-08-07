@@ -27,11 +27,11 @@ model Users{
 model Products{
   id Int @id @default(autoincrement())
   description  String
-  price Int
-  stock String
+  price Float
+  stock Int
   product_type String 
   created_at DateTime @default(now())
-  available Boolean
+  available Boolean? @default(true)
 
   @@map("products")
 }
@@ -39,9 +39,9 @@ model Products{
 model Shops{
   cnpj Int @id
   name  String
-  shop_type String @default("alimentação")
+  shop_type String? @default("alimentação")
   address String
-  phone Int 
+  phone Int?
   branches Int
   created_at DateTime @default(now())
 
@@ -52,8 +52,9 @@ model Suppliers{
   id Int @id @default(autoincrement())
   name  String
   email String  @unique
-  rating Int
+  rating Float
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
+
   @@map("suppliers")
 }
